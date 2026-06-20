@@ -1,0 +1,26 @@
+commands:
+  only_player: "<red>Only a player can execute this command."
+  invalid_permission: "<red>You do not have sufficient permissions to execute this command."
+
+  skin:
+    usage: "<red>Usage: /skin help"
+
+    help:
+      success:
+        - "Help:"
+        - "/skin set <player> — <gray>Sets a skin.</gray>"
+        - "/skin clear — <gray>Resets the skin.</gray>"
+
+    set:
+      usage: "<red>Usage: /skin set <player>"
+      receive: "<green>Fetching skin of player <target>..."
+      success: "<green>Skin successfully set. Rejoin the server to update."
+      target_not_found: "<red>Player <target> not found."
+      failed_save: "<red>Failed to save the skin."
+      error_save: "<red>Error saving skin: <error>."
+
+    clear:
+      success: "<green>Skin successfully reset. Rejoin the server to update."
+      skin_not_found: "<red>You don't have a manually set skin."
+      failed_clear: "<red>Failed to reset the skin."
+      error_clear: "<red>Error resetting skin: <error>."

@@ -1,0 +1,31 @@
+permissions:
+  set: "liteskins.set"
+  clear: "liteskins.clear"
+
+database:
+  # providers: sqlite, mysql
+  provider: sqlite
+  host: localhost
+  port: 3306
+  database: skins
+  user: root
+  password: ''
+
+# Mojang API
+# https://namemc.com/minecraft-skins
+# disable: default-skins-per-names: []
+default-skins-per-names: []
+
+# MineSkin API IDs skins
+# https://mineskin.org/
+# disable: default-skins: []
+default-skins:
+  - "7bfd5546858149dc906319012268e836"
+  - "cafe991b84d241d59fd10f151778785f"
+  - "5b72d87cdf314f61b1b16955ac81760a"
+  - "534b0194eb8c44cc8b79b1169ab6f006"
+  - "eb4cbfce1872421b9ba2fd6c698a2565"
+  - "fad50175897345949120655ab30e5274"
+  - "f811b867c7f34132b85728bba26b56bb"
+  - "31c3da396958489e992a9f3e0b59a937"
+  - "0a0558e5e9a44b74917ed1f57bc039f1"
