@@ -4,7 +4,7 @@
   <groupId>dev.tuhkanens</groupId>
   <artifactId>liteskins</artifactId>
   <name>liteskins</name>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <build>
     <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
     <defaultGoal>clean package</defaultGoal>
@@ -294,8 +294,8 @@
     </plugins>
   </reporting>
   <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <kotlin.version>2.4.0</kotlin.version>
     <java.version>17</java.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 </project>

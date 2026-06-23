@@ -14,20 +14,34 @@ object SkinFetch {
     private val httpClient: HttpClient = HttpClient.newHttpClient()
 
     fun fetch(playerName: String): SkinFetchResult<PlayerSkin> {
-        return try {
+        try {
+            val profileData = fetchJson("${SkinAPI.MOJANG_PROFILE_API.url}$playerName")
 
-            val uuid: String = this.fetchJson("${SkinAPI.MOJANG_PROFILE_API.url}$playerName").get("id").asString
-            val profile: JsonObject = this.fetchJson("${SkinAPI.MOJANG_SKIN_API.url}$uuid?unsigned=false")
-            val property: JsonObject = profile.getAsJsonArray("properties").get(0).asJsonObject
+            if (!profileData.has("id")) {
+                return SkinFetchResult.Failure("Player not found")
+            }
 
-            val value: String = property.get("value").asString
-            val signature: String = property.get("signature").asString
+            val uuid = profileData.get("id").asString
 
-            SkinFetchResult.GetSuccess(PlayerSkin(value, signature))
+            val profile = fetchJson("${SkinAPI.MOJANG_SKIN_API.url}$uuid?unsigned=false")
 
+            if (!profile.has("properties")) {
+                return SkinFetchResult.Failure("Skin data not found")
+            }
+
+            val property = profile
+                .getAsJsonArray("properties")
+                .first()
+                .asJsonObject
+
+            return SkinFetchResult.GetSuccess(
+                PlayerSkin(
+                    property.get("value").asString,
+                    property.get("signature").asString
+                )
+            )
         } catch (e: Exception) {
-            e.printStackTrace()
-            SkinFetchResult.Failure(e.message ?: "Unknown error")
+            return SkinFetchResult.Failure(e.message ?: "Unknown error")
         }
     }
 

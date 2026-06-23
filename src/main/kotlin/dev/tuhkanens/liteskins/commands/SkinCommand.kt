@@ -15,6 +15,8 @@ import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder
 
 class SkinCommand : RawCommand {
 
+    private val instance = Main.instance
+
     override fun execute(invocation: RawCommand.Invocation) {
         val source = invocation.source()
         val args = invocation.arguments().trim().split(" ").filter { it.isNotBlank() }
@@ -100,6 +102,14 @@ class SkinCommand : RawCommand {
                         }
                     }
                 }
+                is SkinFetchResult.NotFound -> {
+                    player.sendMessage(
+                        MessagesManager.getComponent(
+                            "commands.skin.set.target_not_found",
+                            Placeholder.unparsed("target", targetName)
+                        )
+                    )
+                }
                 is SkinFetchResult.Failure -> {
                     player.sendMessage(
                         MessagesManager.getComponent(
@@ -147,7 +157,7 @@ class SkinCommand : RawCommand {
             2 -> when (args[0].lowercase()) {
                 "set" -> {
                     val partial = args[1]
-                    Main.instance.proxy.allPlayers
+                    instance.proxy.allPlayers
                         .map { it.username }
                         .filter { it.startsWith(partial, ignoreCase = true) }
                 }

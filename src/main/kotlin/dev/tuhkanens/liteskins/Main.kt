@@ -15,7 +15,7 @@ import java.nio.file.Path
 @Plugin(
     id = "liteskins",
     name = "liteskins",
-    version = "1.0.0",
+    version = "1.0.1",
     description = "Lite Skins for Velocity",
     authors = ["TuhkanenS"]
 )
